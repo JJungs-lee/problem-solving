@@ -1,24 +1,24 @@
 #include <iostream>
+#include <cstdio>
 
 using namespace std;
 
-int main(){
-	int num;
-	int firstN;
-	//10의 자리,1의 자리
-	int ten, one;
-	int cnt = 0;
+int main() {
+	int n, cur;
+	int res = 0;
 
-	cin >> num;
-	firstN = num;
-	while(1){
-		if(firstN == num && cnt != 0) break;
-		ten = num / 10;
-		one = num % 10;
-		num = one * 10 + (ten + one) % 10;
+	scanf("%d", &n);
 
-		cnt++;
-	}
-	cout << cnt;
+	cur = n;
+	do {
+		int a = cur / 10;
+		int b = cur % 10;
+		int c = (a + b) % 10;
+		cur = b * 10 + c;
+		res++;
+	} while (n != cur);
+
+	printf("%d", res);
+
 	return 0;
 }
