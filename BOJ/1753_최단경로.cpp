@@ -1,41 +1,39 @@
-#include <iostream>
-#include <vector>
-#include <set>
 #include <algorithm>
+#include <iostream>
+#include <set>
+#include <vector>
 
 using namespace std;
 
 /*
-Graph´Â ÀÎÁ¢¸®½ºÆ®¸¦ ¶æÇÑ´Ù. G[i] ´Â i¹ø Á¤Á¡¿¡ ¿¬°áµÈ °£¼±ÀÇ Á¤º¸(pairÀÇ first)¿Í °¡ÁßÄ¡(pairÀÇ second)¸¦ ´ã°í ÀÖ´Ù.
-start´Â ½ÃÀÛÁ¡À» ÀÇ¹ÌÇÑ´Ù.
-
-°á°ú´Â vector·Î ¹İÈ¯µÇ¸ç, vectorÀÇ i¹øÂ° ¿ø¼Ò´Â startºÎÅÍ i¹ø Á¤Á¡ ±îÁöÀÇ ÃÖ´Ü °Å¸®¸¦ ¶æÇÑ´Ù.
+GraphëŠ” ì¸ì ‘ë¦¬ìŠ¤íŠ¸ë¥¼ ëœ»í•œë‹¤. G[i] ëŠ” ië²ˆ ì •ì ì— ì—°ê²°ëœ ê°„ì„ ì˜ ì •ë³´(pairì˜ first)ì™€ ê°€ì¤‘ì¹˜(pairì˜ second)ë¥¼ ë‹´ê³  ìˆë‹¤.
+startëŠ” ì‹œì‘ì ì„ ì˜ë¯¸í•œë‹¤.
+ê²°ê³¼ëŠ” vectorë¡œ ë°˜í™˜ë˜ë©°, vectorì˜ ië²ˆì§¸ ì›ì†ŒëŠ” startë¶€í„° ië²ˆ ì •ì  ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬ë¥¼ ëœ»í•œë‹¤.
 */
 const int inf = 987654321;
 
-int vertexNum;			// Á¤Á¡°³¼ö
-int edgeNum;			// °£¼±°³¼ö
-int startNum;			// ½ÃÀÛÁöÁ¡
+int vertexNum;  // ì •ì ê°œìˆ˜
+int edgeNum;    // ê°„ì„ ê°œìˆ˜
+int startNum;   // ì‹œì‘ì§€ì 
 
-vector<int> dijkstra(const vector< vector< pair<int, int> > >& graph, const int start){
-
-	vector<int> dist(vertexNum + 1, inf);			//¹İÈ¯ÇÒ °ªµéÀÇ ÁıÇÕ
+vector<int> dijkstra(const vector<vector<pair<int, int> > >& graph, const int start) {
+	vector<int> dist(vertexNum + 1, inf);  //ë°˜í™˜í•  ê°’ë“¤ì˜ ì§‘í•©
 	dist[start] = 0;
 
-	set< pair<int, int> > pq;
+	set<pair<int, int> > pq;
 
 	pq.insert(make_pair(0, start));
-	while(!pq.empty()){
+	while (!pq.empty()) {
 		auto top = *pq.begin();
 		pq.erase(top);
 
 		int current = top.second;
-		const vector< pair<int, int> > &edges = graph[current];
+		const vector<pair<int, int> >& edges = graph[current];
 
-		for(int i = 0; i < edges.size(); ++i){
+		for (int i = 0; i < edges.size(); ++i) {
 			int next = edges[i].first;
-			//	±×Á¡ÀÌ °¡Áö°íÀÖ´Â °¡ÁßÄ¡ > ÇöÀç °¡Áö°íÀÖ´Â °¡ÁßÄ¡+ ±×Á¡±îÁö °¡´Â °¡ÁßÄ¡
-			if(dist[next] > dist[current] + edges[i].second){
+			//	ê·¸ì ì´ ê°€ì§€ê³ ìˆëŠ” ê°€ì¤‘ì¹˜ > í˜„ì¬ ê°€ì§€ê³ ìˆëŠ” ê°€ì¤‘ì¹˜+ ê·¸ì ê¹Œì§€ ê°€ëŠ” ê°€ì¤‘ì¹˜
+			if (dist[next] > dist[current] + edges[i].second) {
 				pq.erase(make_pair(dist[next], next));
 				pq.insert(make_pair(dist[current] + edges[i].second, next));
 				dist[next] = dist[current] + edges[i].second;
@@ -45,27 +43,87 @@ vector<int> dijkstra(const vector< vector< pair<int, int> > >& graph, const int 
 	return dist;
 }
 
-int main(){
-
-	int startV;			// Ãâ¹ßÁ¤Á¡
-	int endV;			// µµÂøÁ¤Á¡
-	int weight;			// °¡ÁßÄ¡
+int main() {
+	int startV;  // ì¶œë°œì •ì 
+	int endV;    // ë„ì°©ì •ì 
+	int weight;  // ê°€ì¤‘ì¹˜
 
 	cin >> vertexNum >> edgeNum >> startNum;
 
-	vector< vector< pair<int, int> > > graph(vertexNum + 1);
+	vector<vector<pair<int, int> > > graph(vertexNum + 1);
 
-	for(int i = 0; i < edgeNum; ++i){
+	for (int i = 0; i < edgeNum; ++i) {
 		cin >> startV >> endV >> weight;
 		graph[startV].push_back(make_pair(endV, weight));
 	}
 	vector<int> ret = dijkstra(graph, startNum);
 
-	for(int i = 1; i <= vertexNum; ++i){
-		ret[i] == inf ? cout << "INF" << endl :
-			cout << ret[i] << endl;
+	for (int i = 1; i <= vertexNum; ++i) {
+		ret[i] == inf ? cout << "INF" << endl : cout << ret[i] << endl;
 	}
-
 
 	return 0;
 }
+
+#if 0
+// ë‹¤ë¥¸ í’€ì´ ë°©ë²•
+#include <cstring>
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+
+using namespace std;
+
+const int INF = 987654321;
+const int MAX_V = 20001;
+
+vector<pair<int, int> > adj[MAX_V];
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	int v, e;
+	int start_v;
+	cin >> v >> e >> start_v;
+
+	vector<int> dist(v + 1, INF);
+	priority_queue<pair <int, int>> pq;
+
+	int start, end, value;
+	for (int i = 0; i < e; ++i) {
+		cin >> start >> end >> value;
+		adj[start].push_back({end, value});
+	}
+
+	pq.push({0, start_v});
+	dist[start_v] = 0;
+
+	while (!pq.empty()) {
+		int cost = -pq.top().first;
+		int here = pq.top().second;
+		pq.pop();
+
+		if (dist[here] < cost)
+			continue;
+
+		for (int i = 0; i < adj[here].size(); ++i) {
+			int there = adj[here][i].first;
+			int nextCost = cost + adj[here][i].second;
+
+			if (dist[there] > nextCost) {
+				dist[there] = nextCost;
+				pq.push({-nextCost, there});
+			}
+		}
+	}
+	for (int i = 1; i < dist.size(); ++i) { 
+		if (dist[i] == INF)
+			cout << "INF" << endl;
+		else
+			cout << dist[i] << endl;
+	}
+	return 0;
+}
+#endif
