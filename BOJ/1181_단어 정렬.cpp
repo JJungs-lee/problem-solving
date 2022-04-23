@@ -1,26 +1,24 @@
+#include <algorithm>
 #include <iostream>
 #include <string>
-#include <algorithm>
 using namespace std;
 
-struct data
-{
+struct Data {
 	string word;
 	int length;
 };
 
-bool isLower(const data &a, const data &b);
-bool isLowerWord(const data &a, const data &b);
-bool isSame(const data &a, const data &b);
+bool isLower(const Data &a, const Data &b);
+bool isLowerWord(const Data &a, const Data &b);
+bool isSame(const Data &a, const Data &b);
 
-int main(){
-
+int main() {
 	int n;
-	data d[20000];
+	Data d[20000];
 
-	//input
+	// input
 	cin >> n;
-	for(int i = 0; i < n; ++i){
+	for (int i = 0; i < n; ++i) {
 		cin >> d[i].word;
 		d[i].length = d[i].word.length();
 	}
@@ -28,22 +26,22 @@ int main(){
 	stable_sort(&d[0], &d[n], isLowerWord);
 	stable_sort(&d[0], &d[n], isLower);
 
-	data *it;
+	Data *it;
 	it = unique(&d[0], &d[n], isSame);
 
-	for(data* i = &d[0]; i != it; ++i){
+	for (Data *i = &d[0]; i != it; ++i) {
 		cout << i->word << endl;
 	}
 	return 0;
 }
 
-bool isLower(const data &a, const data &b){
+bool isLower(const Data &a, const Data &b) {
 	return a.length < b.length;
 }
 
-bool isLowerWord(const data &a, const data &b){
+bool isLowerWord(const Data &a, const Data &b) {
 	return a.word < b.word;
 }
-bool isSame(const data &a, const data &b){
+bool isSame(const Data &a, const Data &b) {
 	return a.word == b.word;
 }

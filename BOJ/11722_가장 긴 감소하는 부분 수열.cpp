@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 using namespace std;
 
 int n;
@@ -9,12 +9,12 @@ int cache[1001];
 int solve(int start) {
 	int &ret = cache[start];
 
-	if(ret != -1) {
+	if (ret != -1) {
 		return ret;
 	}
 	ret = 1;
-	for(int next = start + 1; next <= n; ++next) {
-		if(arr[start] > arr[next]) {
+	for (int next = start + 1; next <= n; ++next) {
+		if (arr[start] > arr[next]) {
 			ret = max(ret, solve(next) + 1);
 		}
 	}
@@ -22,30 +22,29 @@ int solve(int start) {
 }
 
 int main() {
-	
 	cin >> n;
 	int cnt = 0;
-	for(int i = 1; i <= n; ++i) {
+	for (int i = 1; i <= n; ++i) {
 		cin >> arr[i];
 		cache[i] = -1;
 	}
-	
-	for(int i = 1; i <= n; ++i) {
+
+	for (int i = 1; i <= n; ++i) {
 		cnt = max(cnt, solve(i));
 	}
 	cout << cnt << endl;
 	return 0;
 }
 
-// ´Ù¸¥ Ç®ÀÌ¹ý
+// ï¿½Ù¸ï¿½ Ç®ï¿½Ì¹ï¿½
 //#include <iostream>
 //
-//using namespace std;
-//int n;
-//int arr[1001];
-//int cache[1001];
+// using namespace std;
+// int n;
+// int arr[1001];
+// int cache[1001];
 //
-//int main() {
+// int main() {
 //	cin >> n;
 //	int cnt = 0;
 //	int max = 0;
@@ -53,11 +52,11 @@ int main() {
 //		cin >> arr[i];
 //		cache[i] = 0;
 //	}
-//	
+//
 //	for(int i = 1; i <= n; ++i) {
 //		int min = 0;
 //		for(int j = 0; j < i; ++j) {
-//			//ÀÌÀü°Å¸¦ ºñ±³ÇÏ´Â ¹®Àå
+//			//ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
 //			if(arr[i] < arr[j]) {
 //				if(min < cache[j]) {
 //					min = cache[j];
