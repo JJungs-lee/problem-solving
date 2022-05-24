@@ -1,5 +1,5 @@
 class Solution {
-   public:
+public:
 	int countBattleships(vector<vector<char>>& board) {
 		int res = 0;
 		int m = board.size();
