@@ -1,17 +1,14 @@
-/*
- * Reverse Polish Notation means postfix notation (후위 연산자 표기)
- */
 class Solution {
 public:
 	int evalRPN(vector<string>& tokens) {
 		int ret = 0;
-		stack<int> s;
+		stack<long> s;
 
 		for (auto const c : tokens) {
 			if (c == "+" || c == "-" || c == "*" || c == "/") {
-				int second = s.top();
+				long second = s.top();
 				s.pop();
-				int first = s.top();
+				long first = s.top();
 				s.pop();
 
 				if (c == "+") {
