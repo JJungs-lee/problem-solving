@@ -1,7 +1,7 @@
 ﻿# Problem_Solving
- 알고리즘 문제해결 기법을 공부할때 작성항 코드들을 모아놓았습니다.
+Collected the codes when i was studying algorithmic problem solving.
 
-##폴더설명
+##Folder description
 
 - BOJ - https://www.acmicpc.net/
 - AOJ - https://algospot.com/
@@ -12,8 +12,8 @@
 - Contest - etc.
 - Python - Every Python Problem solving
 
-##언어
+##Language
 
-C++을 기본으로 작성되었지만 가끔 함성카드가 하나씩 섞여있습니다.
+Default Language is `C++`. Sometimes the traps are mixed one by one. 😛
 
-보통 쉽다고 생각하는 문제 혹은 다른언어를 공부하기에 좋은 문제들은 여러 언어로 작성됩니다.
+Problems that i usually think are easy or good for studying other languages are written in multiple languages.
