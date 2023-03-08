@@ -3,13 +3,13 @@
 
 using namespace std;
 
-int main(){
+int main() {
 	string str;
 
 	cin >> str;
-	for(int i = 0; i < str.size(); ++i){
+	for (int i = 0; i < str.size(); ++i) {
 		cout << str[i];
-		if(i != 0 && i%10 == 9 ) cout << endl; 
+		if (i != 0 && i % 10 == 9) cout << endl;
 	}
 	return 0;
 }
