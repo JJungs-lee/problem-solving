@@ -1,33 +1,37 @@
 #include <cstring>
-#include <deque>
+#include <queue>
 #include <iostream>
+#include <climits>
 
 using namespace std;
-#define MAX_AREA 200000
+#define MAX_AREA 100000
 
-deque<pair<int, int>> q;
+queue<pair<int, int>> q;
 int visited[MAX_AREA + 1];
+int res = 0;
+int res_time = INT_MAX;
 
 void bfs(int n, int k) {
 	while (!q.empty()) {
 		auto [cur, time] = q.front();
-		q.pop_front();
+		q.pop();
+
+		visited[cur] = true;
 		if (cur == k) {
-			cout << time << endl;
-			break;
+			res_time = min(res_time, time);
+			if (res_time != INT_MAX && res_time == time)
+				res++;
+			continue;
 		}
 
 		if (cur * 2 <= MAX_AREA && !visited[cur * 2]) {
-			visited[cur * 2] = visited[cur] + 1;
-			q.push_front({cur * 2, time});
+			q.push({cur * 2, time + 1});
 		}
 		if (cur - 1 >= 0 && !visited[cur - 1]) {
-			visited[cur - 1] = visited[cur] + 1;
-			q.push_back({cur - 1, time + 1});
+			q.push({cur - 1, time + 1});
 		}
 		if (cur + 1 <= MAX_AREA && !visited[cur + 1]) {
-			visited[cur + 1] = visited[cur] + 1;
-			q.push_back({cur + 1, time + 1});
+			q.push({cur + 1, time + 1});
 		}
 	}
 }
@@ -37,10 +41,10 @@ int main() {
 
 	cin >> n >> k;
 	memset(visited, 0, sizeof(visited));
-	q.push_back({n, 0});
-	visited[n] = 1;
+	q.push({n, 0});
 
 	bfs(n, k);
+	cout << res_time << "\n" << res << endl;
 
 	return 0;
 }
