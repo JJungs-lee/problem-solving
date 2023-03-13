@@ -2,15 +2,14 @@
 
 using namespace std;
 
-int findGCD(int sun, int mother);				//최대공약수 구하기
+int findGCD(int sun, int mother);
 
-int main(){
-
+int main() {
 	int testCase;
 
 	cin >> testCase;
 
-	while(testCase--){
+	while (testCase--) {
 		int a, b;
 		int gcd;
 
@@ -22,9 +21,8 @@ int main(){
 	return 0;
 }
 
-int findGCD(int a, int b){
-
-	if(a < b) return findGCD(b, a);
-	if(b == 0) return a;
-	return findGCD(b, a%b);
+int findGCD(int a, int b) {
+	if (a < b) return findGCD(b, a);
+	if (b == 0) return a;
+	return findGCD(b, a % b);
 }

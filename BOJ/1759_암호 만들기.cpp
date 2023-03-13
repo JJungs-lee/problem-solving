@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -10,24 +10,25 @@ int C;
 char arrC[15];
 bool check[15];
 
-void DFS(int count){
-
-	if(count == L){
-		//ÀÚÀ½,¸ğÀ½ °¹¼ö Ä«¿îÆ®
+void DFS(int count) {
+	if (count == L) {
+		// ììŒ,ëª¨ìŒ ê°¯ìˆ˜ ì¹´ìš´íŠ¸
 		int consonant = 0, vowel = 0;
-		for(int i = 0; i<vec.size(); ++i) {
-			if(vec[i] == 'a' || vec[i] == 'e' || vec[i] == 'i' || vec[i] == 'o' || vec[i] == 'u') vowel++;
-			else consonant++;
+		for (int i = 0; i < vec.size(); ++i) {
+			if (vec[i] == 'a' || vec[i] == 'e' || vec[i] == 'i' || vec[i] == 'o' || vec[i] == 'u')
+				vowel++;
+			else
+				consonant++;
 		}
-		//ÀÚÀ½2°³ÀÌ»ó ¸ğÀ½ 1°³ÀÌ»ó½Ã Ãâ·Â
-		if(vowel >= 1 && consonant >= 2){
-			for(int i = 0; i<vec.size(); ++i) cout << vec[i];
+		// ììŒ2ê°œì´ìƒ ëª¨ìŒ 1ê°œì´ìƒì‹œ ì¶œë ¥
+		if (vowel >= 1 && consonant >= 2) {
+			for (int i = 0; i < vec.size(); ++i) cout << vec[i];
 			cout << endl;
 		}
 	}
-	// 1ºÎÅÍ µ¹¸é¼­ ¿À¸§Â÷¼øÀÏ¶§ ÁøÇà
-	for(int i = 1; i<C; ++i){
-		if(!check[i] && vec[vec.size() - 1]<arrC[i]){
+	// 1ë¶€í„° ëŒë©´ì„œ ì˜¤ë¦„ì°¨ìˆœì¼ë•Œ ì§„í–‰
+	for (int i = 1; i < C; ++i) {
+		if (!check[i] && vec[vec.size() - 1] < arrC[i]) {
 			check[i] = true;
 			vec.push_back(arrC[i]);
 			DFS(count + 1);
@@ -37,16 +38,16 @@ void DFS(int count){
 	}
 }
 
-int main(){
+int main() {
 	cin >> L >> C;
 
-	for(int i = 0; i<C; ++i) cin >> arrC[i];
+	for (int i = 0; i < C; ++i) cin >> arrC[i];
 
-	//¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+	// ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 	sort(&arrC[0], &arrC[C]);
 
-	//DFS¿¡¼­ ÇÒ·Á°íÇßÁö¸¸ ¹®ÀÚ°¡ ¿À¸§Â÷¼øÀ¸·Î µÇ´ÂÁö È®ÀÎÀ» ÆíÇÏ°Ô ÇÏ±âÀ§ÇØ
-	for(int i = 0; i<C; ++i){
+	// DFSì—ì„œ í• ë ¤ê³ í–ˆì§€ë§Œ ë¬¸ìê°€ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ë˜ëŠ”ì§€ í™•ì¸ì„ í¸í•˜ê²Œ í•˜ê¸°ìœ„í•´
+	for (int i = 0; i < C; ++i) {
 		check[i] = true;
 		vec.push_back(arrC[i]);
 		DFS(1);

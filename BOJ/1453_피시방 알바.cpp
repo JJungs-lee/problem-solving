@@ -4,18 +4,18 @@ using namespace std;
 
 bool area[100] = { false, };
 
-int main(){
-
+int main() {
 	int n;
 	int count = 0;
 	cin >> n;
 
-	for(int i = 0; i<n; ++i){
+	for (int i = 0; i < n; ++i) {
 		int num;
 		cin >> num;
-		if(area[num - 1] == false){
+		if (area[num - 1] == false) {
 			area[num - 1] = true;
-		} else count++;
+		} else
+			count++;
 	}
 
 	cout << count << endl;

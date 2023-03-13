@@ -1,12 +1,11 @@
-//
 #include <iostream>
 
 using namespace std;
 
 long long mul(long long x, long long y, long long p) {
 	long long ans = 1;
-	while(y > 0) {
-		if(y % 2 != 0) {
+	while (y > 0) {
+		if (y % 2 != 0) {
 			ans *= x;
 			ans %= p;
 		}
@@ -18,7 +17,6 @@ long long mul(long long x, long long y, long long p) {
 }
 
 int main() {
-	
 	long long a, b, c;
 	cin >> a >> b >> c;
 

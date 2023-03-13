@@ -1,31 +1,32 @@
+#include <cmath>
 #include <iostream>
 #include <string>
-#include <cmath>
 using namespace std;
 
-int calcStr(string str){
+int calcStr(string str) {
 	int ret = 0;
-	for(int i = 0; i < str.size(); ++i){
-		if(str[i] >= 'a' && str[i] <= 'z') ret += str[i] - 'a' + 1;
-		else{
+	for (int i = 0; i < str.size(); ++i) {
+		if (str[i] >= 'a' && str[i] <= 'z')
+			ret += str[i] - 'a' + 1;
+		else {
 			ret += str[i] - 'A' + 27;
 		}
 	}
 	return ret;
 }
-bool findSosu(int num){
+bool findSosu(int num) {
 	int n = sqrt(num);
 
-	if(num == 1 || num == 2) return true;
-	if(num % 2 == 0) return false;
+	if (num == 1 || num == 2) return true;
+	if (num % 2 == 0) return false;
 
-	for(int i = 3; i < n; ++i){
-		if(num %i == 0) return false;
+	for (int i = 3; i < n; ++i) {
+		if (num % i == 0) return false;
 	}
 	return true;
 }
 
-int main(){
+int main() {
 	string str;
 
 	cin >> str;

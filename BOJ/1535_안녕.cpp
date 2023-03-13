@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -8,27 +8,28 @@ int L[21];
 int J[21];
 
 int func(int pos, int hp) {
-	if(hp <= 0) { return -987654321; }
-	if(pos == n) {
+	if (hp <= 0) {
+		return -987654321;
+	}
+	if (pos == n) {
 		return 0;
 	}
-	// ÇöÀç²¨¸¦ °í¸¥°Å¿Í ¾È°í¸¥°ÅÀÇ  max¸¦ Ã£¾Æ¶ó
+	// í˜„ìž¬êº¼ë¥¼ ê³ ë¥¸ê±°ì™€ ì•ˆê³ ë¥¸ê±°ì˜ maxë¥¼ ì°¾ì•„ë¼
 	return max(func(pos + 1, hp - L[pos]) + J[pos], func(pos + 1, hp));
 };
 
 int main() {
-	
 	int hp = 100;
 	int happy = 0;
 
 	cin >> n;
-	for(int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i) {
 		cin >> L[i];
 	}
-	for(int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i) {
 		cin >> J[i];
 	}
-	cout<<func(0, 100);
+	cout << func(0, 100);
 
 	return 0;
 }
