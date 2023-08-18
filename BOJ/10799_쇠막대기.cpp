@@ -1,11 +1,14 @@
 #include <iostream>
-#include <stack>
 #include <string>
+#include <stack>
 using namespace std;
 
 int main() {
-	string str;
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
+	string str;
 	cin >> str;
 
 	stack<char> s;
@@ -21,7 +24,7 @@ int main() {
 			res++;
 		}
 	}
-	cout << res << endl;
+	cout << res << '\n';
 
 	return 0;
 }
