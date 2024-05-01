@@ -1,3 +1,4 @@
+#if 0
 #include <stdio.h>
 #define SIZE 15
 #define MY_ABS(x) ((x)< 0? (-(x)): (x))
@@ -47,5 +48,44 @@ int main() {
 
 	printf("%d\n", cnt);
 
+	return 0;
+}
+#endif
+
+#include <iostream>
+using namespace std;
+
+bool isused1[40];	// y
+bool isused2[40];	// x + y
+bool isused3[40];	// x - y + n - 1
+
+int n;
+int res = 0;
+
+void func(int cur) {
+	if (cur == n) {
+		res++;
+		return;
+	}
+	for (int i = 0; i < n; ++i) {	// i == y, cur == x
+		if (isused1[i] || isused2[cur + i] || isused3[cur - i + n - 1])
+			continue;
+		
+		isused1[i] = true;
+		isused2[cur + i] = true;
+		isused3[cur - i + n - 1] = true;
+		func(cur + 1);
+		isused3[cur - i + n - 1] = false;
+		isused2[cur + i] = false;
+		isused1[i] = false;
+	}
+}
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+
+	cin >> n;
+	func(0);
+	cout << res;
 	return 0;
 }
