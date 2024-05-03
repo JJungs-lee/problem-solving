@@ -1,43 +1,35 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
-int main(){
-
-	int n;		//»ç¶÷¼ö
+int main() {
+	int n; //ì‚¬ëžŒìˆ˜
 	int arr[1000][3];
 	int cash = 0;
 
-	//input
+	// input
 	cin >> n;
-	for(int i = 0; i < n; ++i){
-		for(int j = 0; j < 3; ++j) cin >> arr[i][j];
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < 3; ++j) cin >> arr[i][j];
 	}
 
-	//slove
-	for(int i = 0; i < n; ++i){
-
-		//3°³´Ù °°À»¶§
-		if(arr[i][0] == arr[i][1] && arr[i][1] == arr[i][2]){
+	// slove
+	for (int i = 0; i < n; ++i) {
+		if (arr[i][0] == arr[i][1] && arr[i][1] == arr[i][2]) { // 3ê°œ ë‹¤ ê°™ì„ë•Œ
 			cash = max(cash, 10000 + (arr[i][0] * 1000));
-		}
-		//2°³°¡ °°À»‹š
-		else if((arr[i][0] == arr[i][1])){
+		} else if ((arr[i][0] == arr[i][1])) { // 2ê°œê°€ ê°™ì„ë–„
 			cash = max(cash, 1000 + (arr[i][0] * 100));
-		} else if((arr[i][0] == arr[i][2])){
+		} else if ((arr[i][0] == arr[i][2])) {
 			cash = max(cash, 1000 + (arr[i][0] * 100));
-		} else if((arr[i][1] == arr[i][2])){
+		} else if ((arr[i][1] == arr[i][2])) {
 			cash = max(cash, 1000 + (arr[i][1] * 100));
-		}
-		//1°³ ÀÏ°æ¿ì
-		else{
+		} else { // 1ê°œ ì¼ê²½ìš°
 			int maxN = 0;
 			maxN = max(arr[i][0], arr[i][1]);
 			maxN = max(maxN, arr[i][2]);
 			cash = max(cash, maxN * 100);
 		}
-
 	}
 	cout << cash << endl;
 

@@ -8,11 +8,9 @@ int main() {
 
 	unsigned int arr[20001] = { 1, };
 
-
 	for(int i = 1; i < 20001; ++i) {
 		arr[i] = arr[i - 1] + 6 * i;
 	}
-
 
 	for(int i = 0; i < 20000; ++i) {
 		if(n == 1) {
