@@ -1,16 +1,19 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <vector>
 using namespace std;
 
 int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+
 	vector<int> v1, v2;
 	int num;
-	for(int i = 0; i < 10; ++i) {
+	for (int i = 0; i < 10; ++i) {
 		cin >> num;
 		v1.push_back(num);
 	}
-	for(int i = 0; i < 10; ++i) {
+	for (int i = 0; i < 10; ++i) {
 		cin >> num;
 		v2.push_back(num);
 	}
