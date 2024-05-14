@@ -1,6 +1,41 @@
 #include <iostream>
-#include <cstring>
+using namespace std;
+
+long long dp[101][10];
+
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+
+	int n;
+	cin >> n;
+	for (int i = 1; i <= 9; ++i)
+		dp[1][i] = 1;
+
+	for (int i = 2; i <= n; ++i) {
+		for (int j = 0; j <= 9; ++j) {
+			if (j != 0)
+				dp[i][j] += dp[i - 1][j - 1];
+			if (j != 9)
+				dp[i][j] += dp[i - 1][j + 1];
+			dp[i][j] %= 1000000000;
+		}
+	}
+	long long res = 0;
+	for (int i = 0; i <= 9; ++i) {
+		res += dp[n][i];
+	}
+	res %= 1000000000;
+	cout << res;
+
+	return 0;
+}
+
+#if 0
 #include <memory.h>
+
+#include <cstring>
+#include <iostream>
 
 using namespace	std;
 
@@ -30,13 +65,15 @@ int main() {
 	cout << sum%MOD;
 	return 0;
 }
+#endif
 
 #if 0
-// ³»°¡ Ç®¾ú´ø ¼Ò½º 
-// ÃÊ±âÈ­¶û retÀ» »ç¿ëÀ» ¾ÈÇß¾îµµ ‰ç´Âµ¥ ÀÌ»óÇÏ°Ô Ç®¾ú´ø °Í °°À½.
-#include <iostream>
-#include <cstring>
+// ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ 
+// ï¿½Ê±ï¿½È­ï¿½ï¿½ retï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¾îµµ ï¿½ï¿½Âµï¿½ ï¿½Ì»ï¿½ï¿½Ï°ï¿½ Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 #include <memory.h>
+
+#include <cstring>
+#include <iostream>
 
 using namespace	std;
 

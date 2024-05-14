@@ -1,41 +1,30 @@
 #include <iostream>
-
 using namespace std;
-int onecount = 0;
-int zerocount = 0;
-int fibonacci(int n);
 
-int main(){
-	int testCase;
+int dp[42];
+int n, tc;
 
-	cin >> testCase;
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
 
-	while(testCase--){
-		int n;
+	dp[0] = 1;
+	dp[1] = 1;
 
+	for (int i = 2; i < 41; ++i)
+		dp[i] = dp[i - 1] + dp[i - 2];
+
+	cin >> tc;
+	while (tc--) {
 		cin >> n;
-
-		fibonacci(n);
-
-		cout << zerocount << ' ' << onecount << endl;
-		onecount = 0;
-		zerocount = 0;
+		if (n == 0) {
+			cout << "1 0" << endl;
+		} else if (n == 1) {
+			cout << "0 1" << endl;
+		} else {
+			cout << dp[n - 2] << " " << dp[n - 1] << '\n';
+		}
 	}
-
 
 	return 0;
-}
-
-int fibonacci(int n) {
-	if(n == 0) {
-		zerocount++;
-		return 0;
-	} else if(n == 1) {
-		onecount++;
-		return 1;
-	}
-
-	else {
-		return fibonacci(n - 1) + fibonacci(n - 2);
-	}
 }
